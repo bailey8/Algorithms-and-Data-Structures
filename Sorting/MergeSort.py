@@ -30,13 +30,38 @@
 #             k += 1
 
 # Keep splitting the array until there are just 1 element pieces, and then pieces together
+# def mergeSort(arr):
+#     if len(arr)>1:
+#         mid = len(arr)//2
+#         l = arr[:mid]
+#         r = arr[mid:]
+#         mergeSort(l)
+#         mergeSort(r)
+#         i = j = k = 0
+#         while i < len(l) and j < len(r):
+#             if l[i] < r[j]:
+#                 arr[k] = l[i]
+#                 i +=1
+#             else:
+#                 arr[k] = r[j]
+#                 j+=1
+#             k +=1
+#         while i < len(l):
+#             arr[k] = l[i]
+#             i +=1
+#             k +=1
+#         while j < len(r):
+#             arr[k] = r[j]
+#             j +=1
+#             k +=1
+
 def mergeSort(arr):
-    if len(arr)>1:
+    if len(arr) > 1:
         mid = len(arr)//2
-        l = arr[:mid]
         r = arr[mid:]
-        mergeSort(l)
+        l = arr[:mid]
         mergeSort(r)
+        mergeSort(l)
         i = j = k = 0
         while i < len(l) and j < len(r):
             if l[i] < r[j]:
@@ -44,7 +69,7 @@ def mergeSort(arr):
                 i +=1
             else:
                 arr[k] = r[j]
-                j+=1
+                j +=1
             k +=1
         while i < len(l):
             arr[k] = l[i]
@@ -54,14 +79,7 @@ def mergeSort(arr):
             arr[k] = r[j]
             j +=1
             k +=1
-
-
-
-
-
-
-
-
+    
 a = [9, 8, 7, 6]
 mergeSort(a)
 print(a)
