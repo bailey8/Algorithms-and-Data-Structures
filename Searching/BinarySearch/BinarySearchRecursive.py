@@ -12,8 +12,21 @@
 #             return current
 #     return None
 
+# def binary_search(arr,num):
+#     l,r = 0, len(arr)-1
+#     while l <=r:
+#         mid = (l+r)//2
+#         if arr[mid] < num:
+#             l = mid+1
+#         elif arr[mid] > num:
+#             r = mid-1
+#         else:
+#             return mid
+#     return None
+
 def binary_search(arr,num):
-    l,r = 0, len(arr)-1
+    l =0 
+    r = len(arr) -1
     while l <=r:
         mid = (l+r)//2
         if arr[mid] < num:
@@ -23,6 +36,7 @@ def binary_search(arr,num):
         else:
             return mid
     return None
+
 
 
 
@@ -42,12 +56,24 @@ print(binary_search([1, 2, 3, 4, 5], 1))
 #             return mid
 #         return recursiveBS(list, l, r, x)
 
+# def recursiveBS(arr,l,r,x):
+#     if l > r:
+#         return None
+#     mid = (l+r)//2
+#     if arr[mid] < x:
+#         l = mid+1
+#     elif arr[mid] > x:
+#         r = mid-1
+#     else:
+#         return mid
+#     return recursiveBS(arr,l,r,x)
+
 def recursiveBS(arr,l,r,x):
     if l > r:
         return None
     mid = (l+r)//2
     if arr[mid] < x:
-        l = mid+1
+        l = mid +1
     elif arr[mid] > x:
         r = mid-1
     else:
@@ -56,4 +82,4 @@ def recursiveBS(arr,l,r,x):
 
     
 
-print(recursiveBS([1, 2, 3, 4, 5], 0, 4, 1))
+print(recursiveBS([1, 2, 3, 4, 5], 0, 4, 5))

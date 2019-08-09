@@ -25,22 +25,42 @@
 #     list[j] = pivot
 #     return j
 
-def quicksort(arr):
-    quicksortHelper(arr,0,len(arr)-1)
-def quicksortHelper(arr,start,end):
+# def quicksort(arr):
+#     quicksortHelper(arr,0,len(arr)-1)
+# def quicksortHelper(arr,start,end):
+#     if start < end:
+#         split = partition(arr,start,end)
+#         quicksortHelper(arr, start,split-1)
+#         quicksortHelper(arr,split+1,end)
+# def partition(arr,start,end):
+#     f = l = start
+#     while l < end:
+#         if arr[l] < arr[end]:
+#             arr[f],arr[l] = arr[l], arr[f]
+#             f +=1
+#         l +=1
+#     arr[end],arr[f] = arr[f],arr[end]
+#     return f
+
+def quicksort(list):
+    quickSortHelper(list,0,len(list)-1)
+def quickSortHelper(list,start,end):
     if start < end:
-        split = partition(arr,start,end)
-        quicksortHelper(arr, start,split-1)
-        quicksortHelper(arr,split+1,end)
-def partition(arr,start,end):
-    f = l = start
-    while l < end:
-        if arr[l] < arr[end]:
-            arr[f],arr[l] = arr[l], arr[f]
+        split = partition(list,start,end)
+        quickSortHelper(list,start, split-1)
+        quickSortHelper(list,split+1, end)
+def partition(list,start,end):
+    l= f =  start
+    while l< end:
+        if list[l] < list[end]:
+            list[l],list[f] =list[f], list[l]
             f +=1
-        l +=1
-    arr[end],arr[f] = arr[f],arr[end]
+        l+=1
+    list[f], list[end] = list[end],list[f]
     return f
+
+
+
 
 
 
