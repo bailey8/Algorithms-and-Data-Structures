@@ -34,7 +34,6 @@ def findMin(self, nums):
         else:
             right = mid - 1
 
-print(findMin([1,2,3,4,5,6,0]))
-
+ 
 
 
