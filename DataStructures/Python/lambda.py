@@ -34,4 +34,6 @@ high_ord_func = lambda x, func: x + func(x)
 # Notice how the higher order function is a lambda itself
 high_ord_func(2, lambda x: x * x)
 
-print(5) if 10 < 10 else print(99)
+
+dic = {}
+print(True if dic.get("hi") else False)

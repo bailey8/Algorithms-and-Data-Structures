@@ -42,24 +42,28 @@
 #     arr[end],arr[f] = arr[f],arr[end]
 #     return f
 
+# def quicksort(list):
+#     quickSortHelper(list,0,len(list)-1)
+# def quickSortHelper(list,start,end):
+#     if start < end:
+#         split = partition(list,start,end)
+#         quickSortHelper(list,start, split-1)
+#         quickSortHelper(list,split+1, end)
+# def partition(list,start,end):
+#     l= f =  start
+#     while l< end:
+#         if list[l] < list[end]:
+#             list[l],list[f] =list[f], list[l]
+#             f +=1
+#         l+=1
+#     list[f], list[end] = list[end],list[f]
+#     return f
+
 def quicksort(list):
-    quickSortHelper(list,0,len(list)-1)
-def quickSortHelper(list,start,end):
+    quicksorthelper(list,0,len(list)-1)
+def quicksorthelper(list,start,end):
     if start < end:
-        split = partition(list,start,end)
-        quickSortHelper(list,start, split-1)
-        quickSortHelper(list,split+1, end)
-def partition(list,start,end):
-    l= f =  start
-    while l< end:
-        if list[l] < list[end]:
-            list[l],list[f] =list[f], list[l]
-            f +=1
-        l+=1
-    list[f], list[end] = list[end],list[f]
-    return f
-
-
+        
 
 
 

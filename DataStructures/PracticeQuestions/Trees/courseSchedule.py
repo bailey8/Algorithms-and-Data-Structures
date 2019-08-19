@@ -1,45 +1,64 @@
-#Brute force - check for each node if its in a cycle - O (VE)
-# from collections import defaultdict
-# def canFinish(self, numCourses, prerequisites):
-#     forward = {i: set() for i in range(numCourses)}
-#     courses_i_is_a_prereq_for = defaultdict(set)
-#     for i, j in prerequisites:
-#         # For every course, add the prereq
-#         forward[i].add(j)
-#         # For every PREREQ, add the courses they unlock. if a node is in here, it means the PREREQ IS BLOCKING IT
-#         courses_i_is_a_prereq_for[j].add(i)
-#     # Pick every course with no prereqs
-#     stack = [node for node in range(numCourses) if not courses_i_is_a_prereq_for[node]]
-#     while stack:
-#         # Remove first course with no prereqs
-#         node = stack.pop()
-#         # For EVERY PREREQ
-#         for neigh in forward[node]:
-#             # delete the POPPED NODE from BLOCKING STATE
-#             # Saying.. Hey! I've completed the prereq, so 
-#             courses_i_is_a_prereq_for[neigh].remove(node)
-#             #
-#             if not courses_i_is_a_prereq_for[neigh]:
-#                 stack.append(neigh)
-#         courses_i_is_a_prereq_for.pop(node)
-#     return not courses_i_is_a_prereq_for
- 
-from collections import  defaultdict
-# DFS: from the front to the end    
-def canFinish(numCourses, prerequisites):
-    forward = {i: set() for i in range(numCourses)}
-    backward = defaultdict(set)
-    for i, j in prerequisites:
-        forward[i].add(j)
-        backward[j].add(i)
-    stack = [node for node in range(numCourses) if not backward[node]]
-    while stack:
-        node = stack.pop()
-        for neigh in forward[node]:
-            backward[neigh].remove(node)
-            if not backward[neigh]:
-                stack.append(neigh)
-        backward.pop(node)
-    return not backward
+# DFS Kahns
+class Solution(object):
+    def canFinish(self, numCourses, prerequisites):
+        from collections import  defaultdict
+    # DFS: from the front to the end    
+        incoming = defaultdict(set)
+        outgoing = defaultdict(set)
+        for i, j in prerequisites:
+            incoming[i].add(j)
+            outgoing[j].add(i)
+        stack = [node for node in range(numCourses) if not incoming[node]]
+        while stack:
+            node = stack.pop()
+            for neigh in outgoing[node]:
+                incoming[neigh].remove(node)
+                if not incoming[neigh]:
+                    stack.append(neigh)
+            incoming.pop(node)
+        # If theres no nodes with incoming edges at the end we know no cycles
+        return not incoming
 
-canFinish(4,[[1,0],[3,2]])
+# BFS with counter
+class Solution2(object):
+    def canFinish(self, numCourses, prerequisites):
+        from collections import  defaultdict
+    # DFS: from the front to the end    
+        incoming = defaultdict(int)
+        outgoing = defaultdict(set)
+        for i, j in prerequisites:
+            incoming[i] +=1
+            outgoing[j].add(i)
+        queue = [node for node in range(numCourses) if not incoming[node]]
+        while queue:
+            node = queue.pop()
+            # PUT NODE NEXT IN TOPOLOGICAL ORDERING HERE
+            for neigh in outgoing[node]:
+                incoming[neigh] -=1
+                if not incoming[neigh]:
+                    queue.append(neigh)
+            incoming.pop(node)
+        # If theres no nodes with incoming edges at the end we know no cycles
+        return not incoming
+
+# DFS
+# class Solution3(object):
+#     def canFinish(self, numCourses, prerequisites):
+#         from collections import  defaultdict
+#     # DFS: from the front to the end    
+#         incoming = defaultdict(int)
+#         outgoing = defaultdict(set)
+#         for i, j in prerequisites:
+#             incoming[i] +=1
+#             outgoing[j].add(i)
+#         queue = [node for node in range(numCourses) if not incoming[node]]
+#         while queue:
+#             node = queue.pop()
+#             # PUT NODE NEXT IN TOPOLOGICAL ORDERING HERE
+#             for neigh in outgoing[node]:
+#                 incoming[neigh] -=1
+#                 if not incoming[neigh]:
+#                     queue.append(neigh)
+#             incoming.pop(node)
+#         # If theres no nodes with incoming edges at the end we know no cycles
+#         return not incoming
