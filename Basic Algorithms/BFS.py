@@ -33,7 +33,8 @@ def BFS(graph, start):
 def BFS_SHORTESTPATH(graph, start):
     visited = set()
     queue = [start]
-
+    stop = [end]
+    
     #This will store the parent for each node
     parent = defaultdict(lambda: None)
 
